@@ -41,22 +41,22 @@ class WelcomeHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         self.response.headers['Content-Type'] = 'text/html'
         response_html = jinja_env.get_template('templates/index.html')
-        if user != None:
-            user = users.get_current_user()
-            logging.info('current user is %s' % (user.nickname()))
-            logout = ''
-            if user == '':
-                logout = ''
-            else:
-                logout = 'Log out'
-            data = {
-            'user_nickname': user.nickname(),
-            'logoutUrl': users.create_logout_url('/'),
-            'logout': logout
-            }
-            self.response.write(response_html.render(data))
-        else:
-            self.response.write(response_html.render())
+        # if user != None:
+        #     user = users.get_current_user()
+        #     logging.info('current user is %s' % (user.nickname()))
+        #     logout = ''
+        #     if user == '':
+        #         logout = ''
+        #     else:
+        #         logout = 'Log out'
+        #     data = {
+        #     'user_nickname': user.nickname(),
+        #     'logoutUrl': users.create_logout_url('/'),
+        #     'logout': logout
+        #     }
+        #     self.response.write(response_html.render(data))
+        # else:
+        #     self.response.write(response_html.render())
 
 app = webapp2.WSGIApplication([
     ('/', WelcomeHandler),
